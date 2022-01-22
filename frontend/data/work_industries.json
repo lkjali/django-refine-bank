@@ -1,0 +1,115 @@
+[
+{
+ "model": "frontend.workindustry",
+ "pk": 1,
+ "fields": {
+  "name": "Agriculture, Food and Natural Resources"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 2,
+ "fields": {
+  "name": "Architecture and Construction"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 3,
+ "fields": {
+  "name": "Arts, Audio/Video Technology and Communications"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 4,
+ "fields": {
+  "name": "Business Management and Administration"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 5,
+ "fields": {
+  "name": "Education and Training"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 6,
+ "fields": {
+  "name": "Finance"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 7,
+ "fields": {
+  "name": "Government and Public Administration"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 8,
+ "fields": {
+  "name": "Health Science"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 9,
+ "fields": {
+  "name": "Hospitality and Tourism"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 10,
+ "fields": {
+  "name": "Human Services"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 11,
+ "fields": {
+  "name": "Information Technology"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 12,
+ "fields": {
+  "name": "Law, Public Safety, Corrections and Security"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 13,
+ "fields": {
+  "name": "Manufacturing"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 14,
+ "fields": {
+  "name": "Marketing, Sales and Service"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 15,
+ "fields": {
+  "name": "Science, Technology, Engineering and Mathematics"
+ }
+},
+{
+ "model": "frontend.workindustry",
+ "pk": 16,
+ "fields": {
+  "name": "Transportation, Distribution and Logistics"
+ }
+}
+
+]

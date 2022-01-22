@@ -1,0 +1,16 @@
+[
+{
+ "model": "frontend.loansecurity",
+ "pk": 1,
+ "fields": {
+  "name": "Real Estate"
+ }
+},
+{
+ "model": "frontend.loansecurity",
+ "pk": 2,
+ "fields": {
+  "name": "Land"
+ }
+}
+]

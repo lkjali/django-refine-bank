@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <!-- Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pt-0">
+                        <h4 class="txt-dark flex flex-middle capitalize-font">Pending Loans</h4>
+                        <hr class="light-grey-hr"/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-responsive mt-5 mb-15">
+                                    <table id="dataTable1" class="table display table-hover mb-30" style="max-width: 1400px;">
+                                        <thead>
+                                            <tr>
+                                                <th width="3%">No</th>
+                                                <th width="15%">Purpose</th>
+                                                <th width="25%">Description</th>
+                                                <th width="8%">Loan Amount</th>
+                                                <th width="8%">Loan Term</th>
+                                                <th width="8%">Currency</th>
+                                                <th width="8%">Income Amount</th>
+                                                <th width="8%">City</th>
+                                                <th width="10%">Created At</th>
+                                                <th width="8%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in loans %}
+                                                <tr>
+                                                    <td>{{ forloop.counter }}</td>
+                                                    <td>{{ item.purpose }}</td>
+                                                    <td>
+                                                        {% if item.header|length > 100 %}
+                                                            {{ item.header|slice:"0:100"|linebreaksbr }}... 
+                                                        {% else %}
+                                                            {{ item.header|linebreaksbr }}
+                                                        {% endif %}
+                                                    </td>
+                                                    
+                                                    <td>{{ item.loan_amount }}</td>
+                                                    <td>{{ item.loan_term }}</td>
+                                                    <td>{{ item.currency }}</td>
+                                                    <td>{{ item.income_amount|default_if_none:'' }}</td>
+                                                    <td>{{ item.city }}</td>
+                                                    <td>{{ item.created_at|date:'Y-m-d' }}</td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-xs-12 mb-10 pa-0">
+                                                                <button data-id="{{ item.id }}" class="btn_accept btn btn-success btn-xs btn-rounded btn-icon left-icon"><i class="fa fa-check"></i><span>Accept</span></button>
+                                                            </div>
+                                                            <div class="col-xs-12 pa-0">
+                                                                <button data-id="{{ item.id }}" class="btn_decline btn btn-danger btn-xs btn-rounded btn-icon left-icon"><i class="fa fa-close"></i><span>Decline</span></button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Row -->
+    
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+    $('#dataTable1').DataTable({
+        
+    });
+    
+    $('.btn_accept').on('click', function(){
+        var loan_id = $(this).data('id');
+        swal({   
+            title: "Are you sure?",   
+            text: "This Loan will be allowed successfully !",   
+            showCancelButton: true,   
+            confirmButtonColor: "#22af47",   
+            confirmButtonText: "Yes, Accept it!",   
+            cancelButtonText: "No, Cancel it!",   
+            closeOnConfirm: true,   
+            closeOnCancel: true 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                $.ajax({
+                    headers: { "X-CSRFToken": '{{csrf_token}}' },
+                    url: '{% url "ajax-accept-loan" %}',
+                    data: {
+                        'loan_id': loan_id
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        location.reload();
+                    }
+                });  
+            }
+        });
+		return false;
+    });
+    $('.btn_decline').on('click', function(){
+        var loan_id = $(this).data('id');
+        swal({   
+            title: "Are you sure?",   
+            text: "This Loan will be declined !",   
+            showCancelButton: true,   
+            confirmButtonColor: "#ed1b60",   
+            confirmButtonText: "Yes, Decline it!",   
+            cancelButtonText: "No, Cancel it!",   
+            closeOnConfirm: true,   
+            closeOnCancel: true 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                $.ajax({
+                    headers: { "X-CSRFToken": '{{csrf_token}}' },
+                    url: '{% url "ajax-decline-loan" %}',
+                    data: {
+                        'loan_id': loan_id
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        location.reload();
+                    }
+                });  
+            }
+        });
+		return false;
+    });
+    
+</script>
+{% endblock %}

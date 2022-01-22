@@ -1,0 +1,30 @@
+[
+{
+ "model": "frontend.incometype",
+ "pk": 1,
+ "fields": {
+  "name": "Salary"
+ }
+},
+{
+ "model": "frontend.incometype",
+ "pk": 2,
+ "fields": {
+  "name": "Rent"
+ }
+},
+{
+ "model": "frontend.incometype",
+ "pk": 3,
+ "fields": {
+  "name": "Remittances"
+ }
+},
+{
+ "model": "frontend.incometype",
+ "pk": 4,
+ "fields": {
+  "name": "Dividends"
+ }
+}
+]

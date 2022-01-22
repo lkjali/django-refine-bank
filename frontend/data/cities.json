@@ -1,0 +1,380 @@
+[
+{
+ "model": "frontend.city",
+ "pk": 1,
+ "fields": {
+  "name": "Tbilisi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 2,
+ "fields": {
+  "name": "Batumi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 3,
+ "fields": {
+  "name": "Kutaisi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 4,
+ "fields": {
+  "name": "Rustavi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 5,
+ "fields": {
+  "name": "Gori"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 6,
+ "fields": {
+  "name": "Zugdidi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 7,
+ "fields": {
+  "name": "Poti"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 8,
+ "fields": {
+  "name": "Khashuri"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 9,
+ "fields": {
+  "name": "Samtredia"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 10,
+ "fields": {
+  "name": "Senaki"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 11,
+ "fields": {
+  "name": "Zestafoni"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 12,
+ "fields": {
+  "name": "Marneuli"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 13,
+ "fields": {
+  "name": "Telavi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 14,
+ "fields": {
+  "name": "Akhaltsikhe"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 15,
+ "fields": {
+  "name": "Kobuleti"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 16,
+ "fields": {
+  "name": "Ozurgeti"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 17,
+ "fields": {
+  "name": "Kaspi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 18,
+ "fields": {
+  "name": "Chiatura"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 19,
+ "fields": {
+  "name": "Tskaltubo"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 20,
+ "fields": {
+  "name": "Sagarejo"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 21,
+ "fields": {
+  "name": "Gardabani"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 22,
+ "fields": {
+  "name": "Borjomi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 23,
+ "fields": {
+  "name": "Tkibuli"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 24,
+ "fields": {
+  "name": "Khoni"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 25,
+ "fields": {
+  "name": "Bolnisi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 26,
+ "fields": {
+  "name": "Akhalkalaki"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 27,
+ "fields": {
+  "name": "Gurjaani"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 28,
+ "fields": {
+  "name": "Mtskheta"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 29,
+ "fields": {
+  "name": "Kvareli"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 30,
+ "fields": {
+  "name": "Akhmeta"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 31,
+ "fields": {
+  "name": "Kareli"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 32,
+ "fields": {
+  "name": "Lanchkhuti"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 33,
+ "fields": {
+  "name": "Dusheti"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 34,
+ "fields": {
+  "name": "Sachkhere"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 35,
+ "fields": {
+  "name": "Dedoplistskaro"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 36,
+ "fields": {
+  "name": "Lagodekhi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 37,
+ "fields": {
+  "name": "Ninotsminda"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 38,
+ "fields": {
+  "name": "Abasha"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 39,
+ "fields": {
+  "name": "Tsnori"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 40,
+ "fields": {
+  "name": "Terjola"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 41,
+ "fields": {
+  "name": "Simple"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 42,
+ "fields": {
+  "name": "Khobi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 43,
+ "fields": {
+  "name": "Tsalenjikha"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 44,
+ "fields": {
+  "name": "Vani"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 45,
+ "fields": {
+  "name": "Baghdati"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 46,
+ "fields": {
+  "name": "Vale"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 47,
+ "fields": {
+  "name": "Tetritskaro"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 48,
+ "fields": {
+  "name": "Dmanisi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 49,
+ "fields": {
+  "name": "Oni"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 50,
+ "fields": {
+  "name": "Tsalka"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 51,
+ "fields": {
+  "name": "Ambrolauri"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 52,
+ "fields": {
+  "name": "Signagi"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 53,
+ "fields": {
+  "name": "Tsageri"
+ }
+},
+{
+ "model": "frontend.city",
+ "pk": 54,
+ "fields": {
+  "name": "Jvari"
+ }
+}
+]

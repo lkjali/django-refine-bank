@@ -1,0 +1,30 @@
+[
+{
+ "model": "frontend.incomeproof",
+ "pk": 1,
+ "fields": {
+  "name": "Bank statement"
+ }
+},
+{
+ "model": "frontend.incomeproof",
+ "pk": 2,
+ "fields": {
+  "name": "Revenue Services statement"
+ }
+},
+{
+ "model": "frontend.incomeproof",
+ "pk": 3,
+ "fields": {
+  "name": "Lease agreement"
+ }
+},
+{
+ "model": "frontend.incomeproof",
+ "pk": 4,
+ "fields": {
+  "name": "Remittance statement"
+ }
+}
+]

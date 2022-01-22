@@ -1,0 +1,420 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <style>
+        .user-auth-img {
+            height: 43px;
+            width: 43px;
+            vertical-align: middle;
+        }
+        .label{
+            font-size: 14px;
+            padding: 8px 24px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pt-0">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <h4 class="txt-dark flex flex-middle capitalize-font">Loan Details</h4>
+                            </div>
+                            <div class="col-xs-12 col-md-8">
+                                {% if loan.user.picture %}
+                                    <img src="{{ loan.user.picture.url }}" alt="user_auth" class="user-auth-img img-circle"/>
+                                {% else %}
+                                    <img src="{% static 'img/profile.jpg' %}" alt="user_auth" class="user-auth-img img-circle"/>
+                                {% endif %}
+                                <span class="ml-10 mr-40 inline-block">{{ loan.user.first_name }} {{ loan.user.last_name }}</span>
+                                <span class="ml-50 txt-dark inline-block"><i class="zmdi zmdi-email-open mr-10"></i>{{ loan.user.email }}</span>
+                                <span class="ml-10 inline-block"><i class="zmdi zmdi-phone mr-10"></i>{{ loan.user.phone }}</span>
+                                
+                                {% if loan.status == 3 %}
+                                    <button id="btn_reject" class="btn btn-danger btn-sm btn-rounded pull-right btn-icon left-icon ml-15"><i class="fa fa-times"></i><span>Reject</span></button>
+                                    <button id="btn_accept" class="btn btn-success btn-sm btn-rounded pull-right btn-icon left-icon"><i class="fa fa-check"></i><span>Accept</span></button>
+                                {% elif loan.status == 4 %}
+                                    <span class="label label-success capitalize-font  pull-right">Completed</span>
+                                {% endif %}
+                                
+                            </div>
+                        </div>
+                        <hr class="light-grey-hr mt-5 mb-10"/>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12" {% if loan.attached_files %}style="min-height: 180px;"{% else %}style="min-height: 240px;"{% endif %} >
+                                        <h5 class="mb-15 weight-500 capitalize-font">{{ loan.purpose }}</h5>
+                                        <p class="mb-15">{{ loan.header|linebreaksbr }}</p>
+                                    </div>
+                                    
+                                </div>
+                                {% if loan.attached_files %}
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h5 class="weight-500 capitalize-font">Attached Files</h5>
+                                        </div>
+                                    </div>
+                                    <hr class="light-grey-hr mt-5 mb-5"/>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-10">
+                                            {% for item in loan.attached_files %}
+                                                <a href="{{ item.file.url }}" download>
+                                                    <span class="txt-primary inline-block mr-20"><i class="fa fa-paperclip mr-5"></i>{{ item }}</span>
+                                                </a>
+                                            {% endfor%}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                
+                                <hr class="light-grey-hr mb-10"/>
+                                <div class="row mb-5">
+                                    <div class="col-md-3">
+                                        <h6 class="mb-0 weight-500 capitalize-font">Address</h6>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="mb-0 capitalize-font">{{ loan.address }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-md-3">
+                                        <h6 class="mb-0 weight-500 capitalize-font">Work Industry</h6>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="mb-0 capitalize-font">{{ loan.industry }}</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-md-3">
+                                        <h6 class="mb-0 weight-500 capitalize-font">Created At</h6>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="mb-0 capitalize-font">{{ loan.created_at }}</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Loan Amount</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.loan_amount }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Loan Term</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.loan_term }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Loan Security</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.loan_security }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Co-Borrower</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.co_borrower }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Income Type</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.income_type }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Proof of income</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.income_proof }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Income Amount</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.income_amount|default_if_none:'' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Current Payables in Loan</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.payable_amount|default_if_none:'' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Marital Status</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.marital_status }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Dependents</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.dependents|default_if_none:'' }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">City</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.city.name }}</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-7">
+                                        <h6 class="mb-5 weight-500 capitalize-font">Currency</h6>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <span class="mb-5 capitalize-font">{{ loan.currency }}</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pt-0">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 class="txt-dark flex flex-middle capitalize-font">
+                                    {% if loanbid %}
+                                        {% if loanbid.status >= 2 %}
+                                            My Bid 
+                                        {% else %}
+                                            Edit a Bid on this Loan
+                                        {% endif %}
+                                    {% else %}
+                                        Place a Bid on this Loan
+                                    {% endif %}
+                                </h4>
+                            </div>
+                        </div>
+                        <hr class="light-grey-hr mt-5 mb-10"/>
+                        <div class="form-wrap">
+                            <form method="POST" data-toggle="validator" role="form" action="{% url 'make-loan-bid' %}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label mb-5">Amount</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">{{ loan.currency }}</div>
+                                                <input type="number" id="borrow_amount" name="borrow_amount" class="form-control" data-error=" " placeholder="" min="500" max="270000" required value="{{ loanbid.borrow_amount }}">
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label mb-5">Months</label>
+                                            <input type="number" id="borrow_term" name="borrow_term" class="form-control" data-error=" " placeholder="" min="6" max="120" required value="{{ loanbid.borrow_term }}">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label mb-5">Issuance fee</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">%</div>
+                                                <input type="number" id="issuance_fee" name="issuance_fee" class="form-control" min="1" max="100" required value="{{ loanbid.issuance_fee }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label mb-5">Loan Rate</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">%</div>
+                                                <input type="number" id="loan_rate" name="loan_rate" class="form-control" min="1" max="100" required value="{{ loanbid.loan_rate }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label mb-5">Effective Rate(%)</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">%</div>
+                                                <input type="number" id="effective_rate" name="effective_rate" class="form-control" min="1" max="100" required value="{{ loanbid.effective_rate }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label mb-5">Monthly Payable</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">{{ loan.currency }}</div>
+                                                <input type="number" id="monthly_payable" name="monthly_payable" class="form-control" required value="{{ loanbid.monthly_payable }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label mb-5">Total Payable</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">{{ loan.currency }}</div>
+                                                <input type="number" id="total_payable" name="total_payable" class="form-control" required value="{{ loanbid.total_payable }}">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="loan_id" value="{{ loan.id }}" />
+                                <input type="hidden" name="user_id" value="{{ request.user.id }}" />
+                                <input type="hidden" name="bid_id" value="{% if loanbid %}{{ loanbid.id }}{% else %}-1{% endif %}" />
+                                <hr class="light-grey-hr">
+                                
+                                <div class="form-actions">
+                                    {% if loanbid.status < 2 or loanbid is None %}
+                                        <button class="btn btn-orange btn-icon left-icon mr-10 pull-left"> <i class="fa fa-check"></i><span>Save</span></button>
+                                        <a href="{% url 'index' %}"  class="btn btn-default pull-left">Cancel</a>
+                                        <div class="clearfix"></div>
+                                    {% endif %}
+                                </div>
+                                
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% include "includes/comments.html" %}
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+    $('#btn_reject').on('click', function(){
+        swal({   
+            title: "Are you sure?",   
+            text: "This Loan will be rejected !",   
+            showCancelButton: true,   
+            confirmButtonColor: "#ed1b60",   
+            confirmButtonText: "Yes, Reject it !",   
+            cancelButtonText: "No, Cancel it !",   
+            closeOnConfirm: true,   
+            closeOnCancel: true 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                $.ajax({
+                    headers: { "X-CSRFToken": '{{csrf_token}}' },
+                    url: '{% url "ajax-reject-award" %}',
+                    data: {
+                        'loan_id': '{{ loan.id }}',
+                        'bid_id': '{{ loanbid.id }}'
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        location.reload();
+                    }
+                });  
+            }
+        });
+		return false;
+    });
+    $('#btn_accept').on('click', function(){
+        console.log("OKOK")
+        swal({   
+            title: "Are you sure?",   
+            text: "This Loan will be accepted successfully !",   
+            showCancelButton: true,   
+            confirmButtonColor: "#22af47",   
+            confirmButtonText: "Yes, Accept it!",   
+            cancelButtonText: "No, Cancel it!",   
+            closeOnConfirm: true,   
+            closeOnCancel: true 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                $.ajax({
+                    headers: { "X-CSRFToken": '{{csrf_token}}' },
+                    url: '{% url "ajax-accept-award" %}',
+                    data: {
+                        'loan_id': '{{ loan.id }}',
+                        'bid_id': '{{ loanbid.id }}'
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        location.reload();
+                    }
+                }); 
+            }
+        });
+    });
+
+    ////////////////// Comments Part /////////////////
+    $('#txt_comment').keypress(function (e) {
+        if(e.which == 13){
+            $("#btn_submit").click();
+            return false;  
+        }
+    });
+    $("#commentForm").validator().on('submit', function(e) {
+        if (e.isDefaultPrevented()) {
+            // handle the invalid form...
+        } else {
+            e.preventDefault();
+            e.stopPropagation();
+            $.ajax({
+                headers: { "X-CSRFToken": '{{csrf_token}}' },
+                url: '{% url "ajax-add-comment" %}',
+                data: {
+                    'msg': $("#txt_comment").val(),
+                    'loan_id': '{{ loan.id }}',
+                    'user_id': '{{ request.user.id }}'
+                },
+                type: 'POST',
+                success: function (data) {
+                    $("#txt_comment").val("");
+                    $('.streamline').prepend(data);
+                }
+            });
+        }
+    });
+    $('.btn_delete_comment').on('click', function(){
+        var comment_id = $(this).data('id');
+        $.ajax({
+            headers: { "X-CSRFToken": '{{csrf_token}}' },
+            url: '{% url "ajax-delete-comment" %}',
+            data: {
+                'comment_id': comment_id
+            },
+            type: 'POST',
+            success: function (data) {
+                $('.sl-item[data-id='+comment_id+']').remove();
+            }
+        });
+    });
+    ////////////////// End Comments Part /////////////////
+</script>
+
+{% endblock %}

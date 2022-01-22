@@ -1,0 +1,51 @@
+[
+{
+ "model": "frontend.purpose",
+ "pk": 1,
+ "fields": {
+  "name": "Buying a house"
+ }
+},
+{
+ "model": "frontend.purpose",
+ "pk": 2,
+ "fields": {
+  "name": "Buying a car"
+ }
+},
+{
+ "model": "frontend.purpose",
+ "pk": 3,
+ "fields": {
+  "name": "Debt consolidation"
+ }
+},
+{
+ "model": "frontend.purpose",
+ "pk": 4,
+ "fields": {
+  "name": "Home improvement"
+ }
+},
+{
+ "model": "frontend.purpose",
+ "pk": 5,
+ "fields": {
+  "name": "Holiday"
+ }
+},
+{
+ "model": "frontend.purpose",
+ "pk": 6,
+ "fields": {
+  "name": "Education"
+ }
+},
+{
+ "model": "frontend.purpose",
+ "pk": 7,
+ "fields": {
+  "name": "Other"
+ }
+}
+]

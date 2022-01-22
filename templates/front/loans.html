@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+    <style>
+        .bootstrap-select .btn.btn-default{
+            background: rgb(255, 255, 255);
+            padding: 10px 12px;
+        }
+        .bootstrap-select .dropdown-toggle:focus{
+            outline: none !important;
+        }
+        
+    </style>
+    <!-- Row -->
+    {% if awarded_bids %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pt-0">
+                        <h4 class="txt-dark flex flex-middle capitalize-font">Awarded Loans</h4>
+                        <hr class="light-grey-hr"/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-responsive mt-5 mb-15">
+                                    <table id="dataTableAward" class="table display table-hover mb-30" style="max-width: 1400px;">
+                                        <thead>
+                                            <tr>
+                                                <th width="3%">No</th>
+                                                <th width="14%">Purpose</th>
+                                                <th width="24%">Description</th>
+                                                <th width="7%">Loan Amount</th>
+                                                <th width="7%">Loan Term</th>
+                                                <th width="7%">Currency</th>
+                                                <th width="7%">Income Amount</th>
+                                                <th width="7%">City</th>
+                                                <th width="9%">Created At</th>
+                                                <th width="10%">Awarded At</th>
+                                                <th width="6%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in awarded_bids %}
+                                                <tr>
+                                                    <td>{{ forloop.counter }}</td>
+                                                    <td>
+                                                        {{ item.loan.purpose }}
+                                                        {% if item.loan.status == 4 %}
+                                                            <span class="label label-success capitalize-font ">Completed</span>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        {% if item.loan.header|length > 100 %}
+                                                            {{ item.loan.header|slice:"0:100"|linebreaksbr }}... 
+                                                        {% else %}
+                                                            {{ item.loan.header|linebreaksbr }}
+                                                        {% endif %}
+                                                    </td>
+                                                    
+                                                    <td>{{ item.loan.loan_amount }}</td>
+                                                    <td>{{ item.loan.loan_term }}</td>
+                                                    <td>{{ item.loan.currency }}</td>
+                                                    <td>{{ item.loan.income_amount|default_if_none:'' }}</td>
+                                                    <td>{{ item.loan.city }}</td>
+                                                    <td>{{ item.loan.created_at|date:'Y-m-d' }}</td>
+                                                    <td>{{ item.awarded_at|date:'Y-m-d' }}</td>
+                                                    <td>
+                                                        <a href="{% url 'detail-loan' item.loan.id %}" class="btn btn-success btn-xs btn-rounded">More..</a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <!-- /Row -->
+    <!-- Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default card-view">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body pt-0">
+                        <h4 class="txt-dark flex flex-middle capitalize-font">Loans</h4>
+                        <hr class="light-grey-hr"/>
+                        
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-responsive mt-5 mb-15">
+                                    <table id="dataTable1" class="table display table-hover mb-30" style="max-width: 1400px;">
+                                        <thead>
+                                            <tr>
+                                                <th width="3%">No</th>
+                                                <th width="15%">Purpose</th>
+                                                <th width="25%">Description</th>
+                                                <th width="8%">Loan Amount</th>
+                                                <th width="8%">Loan Term</th>
+                                                <th width="8%">Currency</th>
+                                                <th width="8%">Income Amount</th>
+                                                <th width="8%">City</th>
+                                                <th width="10%">Created At</th>
+                                                <th width="8%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for item in loans %}
+                                                <tr>
+                                                    <td>{{ forloop.counter }}</td>
+                                                    <td>{{ item.purpose }}</td>
+                                                    <td>
+                                                        {% if item.header|length > 100 %}
+                                                            {{ item.header|slice:"0:100"|linebreaksbr }}... 
+                                                        {% else %}
+                                                            {{ item.header|linebreaksbr }}
+                                                        {% endif %}
+                                                    </td>
+                                                    
+                                                    <td>{{ item.loan_amount }}</td>
+                                                    <td>{{ item.loan_term }}</td>
+                                                    <td>{{ item.currency }}</td>
+                                                    <td>{{ item.income_amount|default_if_none:'' }}</td>
+                                                    <td>{{ item.city }}</td>
+                                                    <td>{{ item.created_at|date:'Y-m-d' }}</td>
+                                                    <td>
+                                                        <a href="{% url 'detail-loan' item.id %}" class="btn btn-success btn-xs btn-rounded">{% if item.bidded %}Edit a bid{% else %}Place a bid{% endif %}</a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Row -->
+    
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+    $('#dataTable1').DataTable();
+    $('#dataTableAward').DataTable();
+    
+    $('.btn_accept').on('click', function(){
+        var loan_id = $(this).data('id');
+        swal({   
+            title: "Are you sure?",   
+            text: "This Loan will be allowed successfully !",   
+            showCancelButton: true,   
+            confirmButtonColor: "#22af47",   
+            confirmButtonText: "Yes, Accept it!",   
+            cancelButtonText: "No, Cancel it!",   
+            closeOnConfirm: true,   
+            closeOnCancel: true 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                $.ajax({
+                    headers: { "X-CSRFToken": '{{csrf_token}}' },
+                    url: '{% url "ajax-accept-loan" %}',
+                    data: {
+                        'loan_id': loan_id
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        location.reload();
+                    }
+                });  
+            }
+        });
+		return false;
+    });
+    $('.btn_decline').on('click', function(){
+        var loan_id = $(this).data('id');
+        swal({   
+            title: "Are you sure?",   
+            text: "This Loan will be declined !",   
+            showCancelButton: true,   
+            confirmButtonColor: "#ed1b60",   
+            confirmButtonText: "Yes, Decline it!",   
+            cancelButtonText: "No, Cancel it!",   
+            closeOnConfirm: true,   
+            closeOnCancel: true 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                $.ajax({
+                    headers: { "X-CSRFToken": '{{csrf_token}}' },
+                    url: '{% url "ajax-decline-loan" %}',
+                    data: {
+                        'loan_id': loan_id
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        location.reload();
+                    }
+                });  
+            }
+        });
+		return false;
+    });
+    
+</script>
+{% endblock %}

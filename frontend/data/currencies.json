@@ -1,0 +1,23 @@
+[
+{
+ "model": "frontend.currency",
+ "pk": 1,
+ "fields": {
+  "name": "GEL"
+ }
+},
+{
+ "model": "frontend.currency",
+ "pk": 2,
+ "fields": {
+  "name": "USD"
+ }
+},
+{
+ "model": "frontend.currency",
+ "pk": 3,
+ "fields": {
+  "name": "EUR"
+ }
+}
+]
